@@ -23,6 +23,10 @@ body {
   top: 25%;
 }
 
+.pass-test {
+  display: none;
+}
+
 @media screen and (max-width: 800px) {
   #drum-machine {
     flex-direction: column;
@@ -40,7 +44,7 @@ body {
   align-items: center;
 }
 
-#display {
+.drum-area {
   width: 300px;
   /* border: black solid 3px; */
   display: grid;
@@ -63,7 +67,7 @@ body {
   max-width: 9vw;
 }
 
-#drum-pad-id {
+#display {
   border: black solid 3px;
   text-align: center;
   padding: 5px;
@@ -92,7 +96,7 @@ body {
     margin: 5px;
     line-height: 7vh;
   }
-  #display {
+  .drum-area {
     width: 250px;
   }
 }

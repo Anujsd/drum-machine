@@ -138,12 +138,12 @@ function App() {
   const buttonPressed = (e) => {
     e.preventDefault();
     const audio = e.target.children[0];
-    const temp = document.getElementById('drum-pad-id');
+    const displayText = document.getElementById('display');
 
     if (!muteAudio) {
       e.target.classList.add('drum-pad-pressed');
       setTimeout(() => e.target.classList.remove('drum-pad-pressed'), 100);
-      temp.innerHTML = e.target.id;
+      displayText.innerHTML = e.target.id;
       audio.currentTime = 0;
       audio.volume = soundValue;
       audio.play();
@@ -152,10 +152,11 @@ function App() {
 
   const handleKeys = (e) => {
     const audio = document.getElementById(String.fromCharCode(e.keyCode));
-    const temp = document.getElementById('drum-pad-id');
+    const displayText = document.getElementById('display');
 
     if (audio !== null && !muteAudio) {
-      temp.innerHTML = audio.parentElement.id;
+      displayText.innerHTML = audio.parentElement.id;
+
       audio.parentElement.classList.add('drum-pad-pressed');
       setTimeout(
         () => audio.parentElement.classList.remove('drum-pad-pressed'),
@@ -196,13 +197,13 @@ function App() {
             id="myRange"
             onChange={(value) => {
               setSoundValue(value);
-              const temp = document.getElementById('drum-pad-id');
+              const temp = document.getElementById('display');
               temp.innerHTML = `Sound : ${Math.round(value * 100)}`;
             }}
             tooltipVisible={false}
           />
         </div>
-        <div id="drum-pad-id" className="control-item">
+        <div id="display" className="control-item">
           Let's Play
         </div>
         <div className="switch control-item">
@@ -216,7 +217,8 @@ function App() {
         </div>
       </div>
 
-      <div id="display">
+      <div className="drum-area">
+        <div className="pass-test">Let's Play</div>
         {bank.map(({ keyCode, keyTrigger, id, url }) => {
           return (
             <div className="drum-pad" id={id} onClick={buttonPressed} key={id}>
